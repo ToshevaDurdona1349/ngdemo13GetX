@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../controllers/home_controller.dart';
 import '../models/post_model.dart';
 
-Widget itemOfPost(Post post) {
+Widget itemOfPost(Post post,HomeController homeController ) {
+
   return Slidable(
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (BuildContext context) {
-              // callUpdatePage(post);
+            onPressed: (_) {
+              homeController.callUpdatePage(post);
             },
             backgroundColor: Colors.orange,
             foregroundColor: Colors.white,
@@ -23,8 +25,8 @@ Widget itemOfPost(Post post) {
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (BuildContext context) {
-              // deletePost(post);
+            onPressed: (_) {
+              homeController.deletePost(post);
             },
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
@@ -51,4 +53,5 @@ Widget itemOfPost(Post post) {
           ],
         ),
       ));
+
 }

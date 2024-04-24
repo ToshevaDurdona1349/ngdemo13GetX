@@ -12,17 +12,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _controller = Get.find<HomeController>();
+  final homeController = Get.find<HomeController>();
 
   @override
   void initState() {
     super.initState();
-    _controller.loadPosts();
-
+    homeController.loadPosts();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -33,15 +33,15 @@ class _HomePageState extends State<HomePage> {
          return Stack(
            children: [
              RefreshIndicator(
-               onRefresh: _controller.handleRefresh,
+               onRefresh: homeController.handleRefresh,
                child: ListView.builder(
-                 itemCount: _controller.posts.length,
+                 itemCount: homeController.posts.length,
                  itemBuilder: (ctx, index) {
-                   return itemOfPost(_controller.posts[index]);
+                   return itemOfPost(homeController.posts[index],homeController);
                  },
                ),
              ),
-             _controller.isLoading
+             homeController.isLoading
                  ? Center(
                child: CircularProgressIndicator(),
              )
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
         onPressed: () {
-          _controller.callCreatePage();
+          homeController.callCreatePage();
         },
       ),
     );

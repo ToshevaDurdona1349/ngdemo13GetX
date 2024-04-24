@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../controllers/creat_controller.dart';
-import '../controllers/home_controller.dart';
 
 class CreatPage extends StatefulWidget {
   const CreatPage({super.key});
