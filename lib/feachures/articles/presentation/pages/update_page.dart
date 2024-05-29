@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../controllers/update_controller.dart';
-import '../models/post_model.dart';
+
+import '../../../../data/models/post_model.dart';
+import '../getx/controllers/update_controller.dart';
 
 
 class UpdatePage extends StatefulWidget {
-  final Post post;
+  final PostModel post;
 
    UpdatePage({super.key,required this.post});
 
@@ -64,7 +65,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   child: MaterialButton(
                     color: Colors.blue,
                     onPressed: () {
-                      updatecontroller.updatePost();
+                      updatecontroller.updatePost(widget.post);
                     },
                     child: Text("Update"),
                   )

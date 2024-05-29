@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../controllers/home_controller.dart';
-import '../models/post_model.dart';
+import '../../../../data/models/post_model.dart';
+import '../getx/controllers/home_controller.dart';
 
-Widget itemOfPost(Post post,HomeController homeController ) {
+
+Widget itemOfPost(PostModel post,HomeController homeController ) {
 
   return Slidable(
       startActionPane: ActionPane(

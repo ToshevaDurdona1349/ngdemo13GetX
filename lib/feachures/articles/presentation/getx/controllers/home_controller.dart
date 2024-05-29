@@ -1,17 +1,21 @@
 
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import '../models/post_model.dart';
-import '../pages/creat_posts.dart';
-import '../pages/update_post.dart';
-import '../service/http_service.dart';
-import '../service/log_service.dart';
+import '../../../../../core/services/log_service.dart';
+import '../../../../../data/datasources/http_service.dart';
+import '../../../../../data/models/post_model.dart';
+import '../../../../../data/repositories/repositoties_impl.dart';
+import '../../../../../domein/usecases/usecase.dart';
+import '../../pages/create_page.dart';
+import '../../pages/update_page.dart';
+
+
 
 class HomeController extends  GetxController{
   var data = Get.arguments;
 
   bool isLoading = true;
-  List<Post> posts = [];
+  List<PostModel> posts = [];
+  PostsUseCase postsUseCase = PostsUseCase(PostRepositoryImpl());
 
   loadPosts() async {
     isLoading = true;
@@ -19,14 +23,14 @@ class HomeController extends  GetxController{
 
     var response = await Network.GET(Network.API_POST_LIST, Network.paramsEmpty());
     LogService.d(response!);
-    List<Post> postList = Network.parsePostList(response);
+    List<PostModel> postList = Network.parsePostList(response);
 
     posts = postList;
     isLoading = false;
     update();
   }
 
-  deletePost(Post post) async {
+  deletePost(PostModel post) async {
     isLoading = true;
     update();
 
@@ -40,13 +44,13 @@ class HomeController extends  GetxController{
     //     .push(MaterialPageRoute(builder: (BuildContext context) {
     //   return CreatPage();
     // }));
-    bool result = await Get.to(CreatPage());
+    bool result = await Get.to(CreatePage());
     if (result) {
       loadPosts();
     }
   }
 
-  Future callUpdatePage(Post post) async {
+  Future callUpdatePage(PostModel post) async {
     // bool result = await Navigator.of(context )
     //     .push(MaterialPageRoute(builder: (BuildContext context) {
     //   return UpdatePage(post: post);
@@ -56,6 +60,7 @@ class HomeController extends  GetxController{
       loadPosts();
     }
   }
+
   Future<void> handleRefresh() async {
     loadPosts();
   }

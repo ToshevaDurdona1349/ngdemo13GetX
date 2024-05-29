@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:ngdemo13_getx/pages/home_page.dart';
-import 'config/root_binding.dart';
+import 'core/constants/constants.dart';
+import 'feachures/articles/presentation/pages/home_page.dart';
 void main() {
   runApp(const MyApp());
 }

@@ -3,7 +3,7 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:http_interceptor/models/response_data.dart';
 import 'package:http_interceptor/models/retry_policy.dart';
 
-import 'log_service.dart';
+import '../../core/services/log_service.dart';
 
 
 class HttpInterceptor implements InterceptorContract {

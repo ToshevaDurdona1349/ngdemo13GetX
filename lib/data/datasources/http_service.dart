@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import '../../core/constants/constants.dart';
+import '../../domein/entities/post_entity.dart';
 import '../models/post_model.dart';
 import '../models/post_res_model.dart';
 
 class Network {
   static bool isTester = true;
-  static String SERVER_DEV = "jsonplaceholder.typicode.com";
-  static String SERVER_PROD = "jsonplaceholder.typicode.com";
+
 
   static String getServer() {
     if (isTester) return SERVER_DEV;
@@ -66,7 +67,7 @@ class Network {
     return params;
   }
 
-  static Map<String, String> paramsCreate(Post post) {
+  static Map<String, String> paramsCreate(PostEntity post) {
     Map<String, String> params = new Map();
     params.addAll({
       'title': post.title!,
@@ -76,7 +77,7 @@ class Network {
     return params;
   }
 
-  static Map<String, String> paramsUpdate(Post post) {
+  static Map<String, String> paramsUpdate(PostEntity post) {
     Map<String, String> params = new Map();
     params.addAll({
       'id': post.id.toString(),
@@ -88,19 +89,19 @@ class Network {
   }
 
 /* Http Parsing */
-
-  static List<Post> parsePostList(String response) {
+// list [] bilan boshlansa shunaqa yoziladi
+  static List<PostModel> parsePostList(String response) {
     dynamic json = jsonDecode(response);
-    return List<Post>.from(json.map((x) => Post.fromJson(x)));
+    return List<PostModel>.from(json.map((x) => PostModel.fromJson(x)));
   }
 
-  static Post parsePost(String response) {
+  static PostModel parsePost(String response) {
     dynamic json = jsonDecode(response);
-    return Post.fromJson(json);
+    return PostModel.fromJson(json);
   }
-
-  static PostRes parsePostRes(String response) {
+// obyekt bilan boshlansa apiay {} shunaqa yozladi
+  static PostResModel parsePostRes(String response) {
     dynamic json = jsonDecode(response);
-    return PostRes.fromJson(json);
+    return PostResModel.fromJson(json);
   }
 }

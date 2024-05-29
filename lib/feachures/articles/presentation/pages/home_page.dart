@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import '../controllers/home_controller.dart';
-import '../views/itim_of_post.dart';
+import '../getx/controllers/home_controller.dart';
+import '../widgets/itim_of_post.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
